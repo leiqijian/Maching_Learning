@@ -13,8 +13,8 @@
 KNN算法，分类问题思路如下：
       1. 计算测试集和每个训练集样本之间的距离
       2. 基于距离进行升序排序
-      3. 找到最近的K个样本
-      4. K个样本标签计算平均值
+      3. 通过欧式距离/曼哈顿距离/切比雪夫距离等计算距离。找到最近的K个样本
+      4. ***K个样本 标签 计算平均值*** 是对标签进行平均值，所以标签必须能求平均是数值类型
       5. 基于平均值预测结果
 代码实现思路：
       1. 导包
@@ -31,15 +31,28 @@ from sklearn.neighbors import KNeighborsRegressor
 #差值        (3, 11, 9), (2, 10 ,10), (3 ,10, 10) (1, 0, 2)
 #平方和          211          204          1          5
 #开根号          14.53         14.28       1         2.24
+
+# x_train =  [[0, 0, 1], [1, 1, 0], [3, 10, 10], [4, 11, 12]]
+# y_train = [0.1, 0.2, 0.3, 0.4]
+# x_test = [[3, 11, 10]]
+#
+# estimator = KNeighborsRegressor(n_neighbors=4) #选择KNN算法中的回归思路，选择最近的3个样本
+#
+# estimator.fit(x_train, y_train)  #训练模型
+#
+# y_pre = estimator.predict(x_test) #预测数据
+# print(f"result is {y_pre}")
+
+
+from sklearn.neighbors import KNeighborsClassifier
+
 x_train =  [[0, 0, 1], [1, 1, 0], [3, 10, 10], [4, 11, 12]]
-y_train = [0.1, 0.2, 0.3, 0.4]
+y_train = ["0.1", "0.2", "0.3", "0.4"]
 x_test = [[3, 11, 10]]
 
-estimator = KNeighborsRegressor(n_neighbors=3)
-
+estimator = KNeighborsClassifier(n_neighbors=3)
 estimator.fit(x_train, y_train)
-
-y_pre = estimator.predict(x_test)
+y_pre = estimator.predict(x_test) #预测数据
 print(f"result is {y_pre}")
 
 
