@@ -33,6 +33,9 @@ def demo():
     y_test = estimator.predict(x_test)
 
     print(y_test)
+    print(estimator.coef_)
+    print(estimator.intercept_)
+
 
 
 # 5 模型预测

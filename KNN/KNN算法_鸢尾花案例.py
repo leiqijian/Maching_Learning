@@ -44,8 +44,16 @@ def demo02_show():
     iris_d['label'] = myIrisData.target
     print(iris_d)
 
+    # 计算特征字段与目标值之间的相关性： 皮尔逊系数，1为最大，越接近1相关性越高
+    # 目的是方便从画图中看出哪些特征 ？？
+    # 1.方式一 df.corr()
+
+    # 2.方式二 通过scipy的pearsonr计算
+
+
     # 使用sns.lmplot()显示散点图
     # sns.lmplot(x='petal width (cm)',y='sepal length (cm)',data=iris_d,hue='label',fit_reg=False)
+
     sns.lmplot(y='petal width (cm)',x='sepal length (cm)',data=iris_d,hue='label',fit_reg=False)
     plt.show()
 

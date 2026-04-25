@@ -26,8 +26,15 @@ x_train =  [[90, 2, 10, 40],
             [60, 4, 15, 45],
             [75, 3, 13, 46]]
 
-x_train_new = StandardScaler().fit_transform(x_train)
-print(x_train_new)
+transformer = StandardScaler()
+
+new_x_train = transformer.fit_transform(x_train)
+
+print(f"标准差 : {transformer.scale_}")
+print(f"均值 : {transformer.mean_}")
+print(f"方差 : {transformer.var_}")
+
+print(new_x_train)
 # [[ 1.22474487 -1.22474487 -1.29777137 -1.3970014 ]
 #  [-1.22474487  1.22474487  1.13554995  0.50800051]
 #  [ 0.          0.          0.16222142  0.88900089]]
