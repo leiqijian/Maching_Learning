@@ -68,6 +68,28 @@ def logic_ml():
     # digits：保留的小数位数
     print(classification_report(y_test, y_pred, digits=5))
 
+def ong_hot_logic_ml():
+    df = pd.read_csv("data/churn.csv")
+
+    # 2- 数据基本处理
+    # 2.1- one-hot独热编码处理
+    """
+        one-hot独热编码处理的目的：
+            1- 算法模型无法直接处理非数值的特征值
+            2- one-hot独热编码将非数值的特征值处理成0和1组成的结果。举例如下：
+                A   [1,0,0]
+                B   [0,1,0]
+                C   [0,0,1]
+    """
+    one_hot_df = pd.get_dummies(df)
+
+    drop_df = one_hot_df.drop(columns=["gender_Male", "Churn_No"], axis=0)
+
+    x = drop_df.drop(columns=["Churn_Yes"], axis=0)
+    y = drop_df.iloc[:, -2]
+
+
+
 if __name__ == '__main__':
     # 普通版的逻辑回归
     logic_ml()
